@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AR Планета</title>
+
+  <!-- Підключаємо останню версію model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+    }
+    model-viewer {
+      width: 90vw;
+      height: 70vh;
+      background-color: #000;
+    }
+    #arButton {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 18px;
+      background-color: #ff3c00;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+    #arButton:active {
+      background-color: #e03500;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Моя AR Планета</h2>
+
+  <model-viewer
+    id="planetModel"
+    src="earthmars.glb"        <!-- твій GLB файл -->
+    ios-src="earthmars.usdz"   <!-- твій USDZ файл -->
+    alt="Планета"
+    ar
+    ar-modes="scene-viewer quick-look webxr"
+    camera-controls
+    auto-rotate
+    environment-image="neutral"
+    shadow-intensity="1">
+  </model-viewer>
+
+  <button id="arButton">🔭 Подивитися у AR</button>
+
+  <script>
+    const model = document.getElementById('planetModel');
+    const button = document.getElementById('arButton');
+
+    button.addEventListener('click', () => {
+      model.activateAR(); // Запускає AR, якщо браузер підтримує
+    });
+  </script>
+
+</body>
+</html>
